@@ -2,6 +2,9 @@ import pandas as pd
 import numpy as np
 import json
 
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
 def content_based_recommender(isbn, data):
     df = pd.read_csv(data)
     book_title = isbn
@@ -74,3 +77,4 @@ def get_json_string(recommendations):
 # Step 3, get the recommendations (get_recommendations(isbn_list, 'books_database.csv'))
 # Step 4, get the json string from the recommendations (get_json_string)
 # Step 5, use the json string of ISBN codes to populate the recommendations shelf
+
