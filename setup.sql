@@ -1,3 +1,17 @@
+CREATE TABLE IF NOT EXISTS `authors` (
+    `id` int(10) NOT NULL AUTO_INCREMENT,
+    `full_name` varchar(255) NOT NULL,
+
+    PRIMARY KEY (`id`)
+);
+
+CREATE TABLE IF NOT EXISTS `publishers` (
+    `id` int(10) NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) NOT NULL,
+
+    PRIMARY KEY (`id`)
+);
+
 CREATE TABLE IF NOT EXISTS `books` (
     `id` varchar(10) NOT NULL,
     `title` varchar(255) NOT NULL,
@@ -27,46 +41,61 @@ CREATE TABLE IF NOT EXISTS `users` (
     PRIMARY KEY (`id`)
 );
 
-CREATE TABLE IF NOT EXISTS `authors` (
-    `id` int(10) NOT NULL AUTO_INCREMENT,
-    `full_name` varchar(255) NOT NULL,
-
-    PRIMARY KEY (`id`)
-);
-
-CREATE TABLE IF NOT EXISTS `publishers` (
-    `id` int(10) NOT NULL AUTO_INCREMENT,
-    `name` varchar(255) NOT NULL,
-
-    PRIMARY KEY (`id`)
-);
-
 CREATE TABLE IF NOT EXISTS `ratings` (
     `id` int(10) NOT NULL AUTO_INCREMENT,
-    `user_id` int(10) NOT NULL,
+    `user_id` int(10),
     `book_id` varchar(10) NOT NULL,
     `rating` int(2) NOT NULL,
+
+    FOREIGN KEY(user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY(book_id)
+        REFERENCES books(id)
+        ON DELETE CASCADE,
 
     PRIMARY KEY (`id`)
 );
 
 CREATE TABLE IF NOT EXISTS `shelves` (
     `id` int(10) NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) NOT NULL,
 
     PRIMARY KEY (`id`)
 );
 
 CREATE TABLE IF NOT EXISTS `book_favorites` (
     `user_id` int(10) NOT NULL,
-    `book_id` int(10) NOT NULL,
+    `book_id` varchar(10) NOT NULL,
+
+    FOREIGN KEY(user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY(book_id)
+        REFERENCES books(id)
+        ON DELETE CASCADE,
 
     PRIMARY KEY(`user_id`, `book_id`)
 );
 
 CREATE TABLE IF NOT EXISTS `book_shelves` (
     `user_id` int(10) NOT NULL,
-    `book_id` int(10) NOT NULL,
+    `book_id` varchar(10) NOT NULL,
     `shelf_id` int(10) NOT NULL,
+
+    FOREIGN KEY(user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY(book_id)
+        REFERENCES books(id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY(shelf_id)
+        REFERENCES shelves(id)
+        ON DELETE CASCADE,
 
     PRIMARY KEY(`user_id`, `book_id`)
 );
