@@ -25,10 +25,6 @@ CREATE TABLE IF NOT EXISTS `ratings` (
     `book_id` varchar(10) NOT NULL,
     `rating` int(2) NOT NULL,
 
-    FOREIGN KEY(user_id)
-        REFERENCES users(id)
-        ON DELETE CASCADE,
-
     FOREIGN KEY(book_id)
         REFERENCES books(id)
         ON DELETE CASCADE,
