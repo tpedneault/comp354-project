@@ -1,32 +1,10 @@
-CREATE TABLE IF NOT EXISTS `authors` (
-    `id` int(10) NOT NULL AUTO_INCREMENT,
-    `full_name` varchar(255) NOT NULL,
-
-    PRIMARY KEY (`id`)
-);
-
-CREATE TABLE IF NOT EXISTS `publishers` (
-    `id` int(10) NOT NULL AUTO_INCREMENT,
-    `name` varchar(255) NOT NULL,
-
-    PRIMARY KEY (`id`)
-);
-
 CREATE TABLE IF NOT EXISTS `books` (
     `id` varchar(10) NOT NULL,
     `title` varchar(255) NOT NULL,
     `year` int(4) NOT NULL,
-    `publisher_id` int(10) NOT NULL,
-    `author_id` int(10) NOT NULL,
+    `publisher` varchar(255) NOT NULL,
+    `author` varchar(255) NOT NULL,
     `cover_url` varchar(512) NOT NULL,
-
-    FOREIGN KEY(author_id)
-        REFERENCES authors(id)
-        ON DELETE CASCADE,
-
-    FOREIGN KEY(publisher_id)
-        REFERENCES publishers(id)
-        ON DELETE CASCADE,
 
     PRIMARY KEY (`id`) 
 );
