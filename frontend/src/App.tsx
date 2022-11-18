@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import * as React from 'react';
 import './App.css';
+//import Login from "./login/Login";
+import {useState} from 'react';
+
+import {
+    BrowserRouter,
+    Route,
+    Routes,
+} from "react-router-dom";
+
+import Dashboard from './pages/Dashboard';
+import Goals from './pages/Goals'; 
+import Statistics from './pages/Statistics';
+import Settings from './pages/Settings';
+import Layout from './pages/Layout';
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<Dashboard />} />
+                    <Route path="Goals" element={<Goals />} />
+                    <Route path="Statistics" element={<Statistics />} />
+                    <Route path="Settings" element={<Settings />} />
+                </Route>
+           
+            </Routes>
+      </BrowserRouter>
+    );
 }
-
 export default App;
