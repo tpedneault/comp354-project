@@ -11,21 +11,27 @@ import Toolbar from '@mui/material/Toolbar';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import Link from '@material-ui/core/Link';
 
+import {makeStyles} from "@material-ui/core/styles";
+const useStyles = makeStyles({
+  drawer:{
+    width: '240px',
 
-const drawerWidth = 240;
+  }
+});
+
 
 function Sidebar() {
+  const classes = useStyles();
   const drawer = (
     <div>
       <h1 id="title">Book Project</h1>
-      <Toolbar />
       <List>
         <ListItem disablePadding>
           <ListItemButton LinkComponent={Link} href="/" >
             <ListItemIcon>
               <MenuBookIcon/>
             </ListItemIcon>
-            <ListItemText primary="My Books" />
+            <ListItemText id="title" primary="My Books" />
           </ListItemButton>
         /</ListItem>
         <ListItem disablePadding>
@@ -37,11 +43,11 @@ function Sidebar() {
           </ListItemButton>
         /</ListItem>
         <ListItem disablePadding>
-          <ListItemButton LinkComponent={Link} href="/Statistics" >
+          <ListItemButton  LinkComponent={Link} href="/Statistics" >
             <ListItemIcon>
               <MenuBookIcon/>
             </ListItemIcon>
-            <ListItemText primary="Statistics" />
+            <ListItemText id="title" primary="Statistics" />
           </ListItemButton>
         /</ListItem>
       </List>
@@ -74,27 +80,10 @@ function Sidebar() {
   }
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-
-      <Box
-        component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-        aria-label="mailbox folders"
-      >
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Drawer
-          variant="permanent"
-          sx={{
-            display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-          }}
-          open
-        >
+      <Drawer
+          variant="permanent" className={classes.drawer}>
           {drawer}
         </Drawer>
-      </Box>
-    </Box>
   );
 }
 export default Sidebar;
