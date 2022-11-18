@@ -30,7 +30,7 @@ function Sidebar() {
         <img
           src="/logo.png"
           alt="logo"
-          width={200}
+          width={230}
           height={50}
           className="px-5 py-10"
         />
