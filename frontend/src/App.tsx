@@ -8,7 +8,7 @@ import {
     Route,
     Routes,
 } from "react-router-dom";
-import { QueryClient, QueryClientProvider} from 'react-query';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Dashboard from './pages/Dashboard';
 import Goals from './pages/Goals'; 
 import Statistics from './pages/Statistics';
@@ -17,14 +17,7 @@ import Layout from './pages/Layout';
 import Login from './pages/Login';
 import { Logout } from '@mui/icons-material';
 
-const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        staleTime: 1000 * 60 * 5,
-        cacheTime: 1000 * 60 * 5,
-      },
-    },
-  });
+const queryClient = new QueryClient();
 
 function App() {
     return (

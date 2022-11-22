@@ -1,19 +1,14 @@
-import { Outlet } from "react-router-dom";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Input from "@mui/material/Input";
 import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
-import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import { Button, ButtonGroup } from "@material-ui/core";
 import Shelf from "../components/shelf";
 import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import CSS from "csstype";
 import { margin } from "@mui/system";
-import axios from "axios";
 
 function Dashboard() {
   return (
@@ -46,7 +41,10 @@ function Dashboard() {
           </div>
         </div>
 
-        <Box sx={{ bgcolor: "#cfe8fc", height: "100vh" }} />
+        <Box sx={{ bgcolor: "#cfe8fc", height: "100vh" }} >
+          <Shelf></Shelf>
+        </Box>
+        
       </Container>
     </>
   );
