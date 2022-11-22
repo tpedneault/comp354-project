@@ -9,14 +9,15 @@ const useStyles = makeStyles({
 });
 const Layout = () => {
   const classes = useStyles();
-  return (
-    <>
-    <div className={classes.container}>
-      <Sidebar />
-      <Outlet />
-      </div>
-    </>
-  );
-};
+    return (
+      <>
+      <div className={classes.container}>
+        <Sidebar />
+        <Outlet />
+        </div>
+      </>
+    );
+  };
+
 
 export default Layout;
