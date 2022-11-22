@@ -19,8 +19,10 @@ function Dashboard() {
   return (
     <>
       <Container maxWidth="xl">
-        <div className="flex min-w-full bg-gray-100 justify-around items-center py-2 mt-4">
-          <div className="flex-initial text-3xl pl-3 font-bold">My Books</div>
+        <div className="flex min-w-full bg-blue-50 justify-around items-center py-2 mt-4 text-[#0d47a1]">
+          <div className="flex-initial text-3xl pl-3 font-bold text-[#0d47a1]">
+            My Books
+          </div>
           <div className="flex-initial">
             <ButtonGroup variant="outlined" aria-label="outlined button group">
               <Button className="px-20">Add Book</Button>
