@@ -14,6 +14,8 @@ import Goals from './pages/Goals';
 import Statistics from './pages/Statistics';
 import Settings from './pages/Settings';
 import Layout from './pages/Layout';
+import Login from './pages/Login';
+import { Logout } from '@mui/icons-material';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -29,6 +31,8 @@ function App() {
         <QueryClientProvider client={queryClient}>
             <BrowserRouter>
                 <Routes>
+                  <Route path="Login" element={<Login />}/>
+                  <Route path="Logout" element={<Logout />}/>
                     <Route path="/" element={<Layout />}>
                         <Route index element={<Dashboard />} />
                         <Route path="Goals" element={<Goals />} />
