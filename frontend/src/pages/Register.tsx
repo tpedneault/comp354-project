@@ -1,7 +1,7 @@
 import { Button, Container, TextField } from "@mui/material";
 import * as React from "react";
 
-function Login() {
+function Register() {
   return (
     <>
       <Container maxWidth="sm" className="min-h-screen">
@@ -18,13 +18,17 @@ function Login() {
               label="Password"
               variant="outlined"
             />
-            <Button variant="contained">Log In</Button>
+            <TextField
+              id="outlined-basic"
+              label="Confirm Password"
+              variant="outlined"
+            />
           </div>
-          <Button variant="text">Create Account</Button>
-          <Button variant="text">Forgot Password</Button>
+          <Button variant="contained">Create Account</Button>
+          <Button variant="text">Sign In</Button>
         </div>
       </Container>
     </>
   );
 }
-export default Login;
+export default Register;
