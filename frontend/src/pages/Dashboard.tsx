@@ -25,17 +25,22 @@ function Dashboard() {
           </div>
           <div className="flex-initial">
             <ButtonGroup variant="outlined" aria-label="outlined button group">
-              <Button className="px-20">Add Book</Button>
-              <Button className="px-20">Add Shelf</Button>
+              <Button className="px-20" color="primary">
+                Add Book
+              </Button>
+              <Button className="px-20" color="primary">
+                Add Shelf
+              </Button>
             </ButtonGroup>
           </div>
           <div className="flex-initial">
             <Box sx={{ "& > :not(style)": { m: 1 } }}>
               <FormControl variant="standard">
-                <InputLabel htmlFor="input-with-icon-adornment">
+                <InputLabel color="primary" htmlFor="input-with-icon-adornment">
                   Search
                 </InputLabel>
                 <Input
+                  color="primary"
                   id="input-with-icon-adornment"
                   startAdornment={
                     <InputAdornment position="start">

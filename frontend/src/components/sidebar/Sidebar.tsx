@@ -39,23 +39,23 @@ function Sidebar() {
         <ListItem disablePadding>
           <ListItemButton LinkComponent={Link} href="/">
             <ListItemIcon>
-              <AutoStoriesOutlinedIcon />
+              <AutoStoriesOutlinedIcon color="primary" />
             </ListItemIcon>
             <ListItemText primary="My Books" />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton LinkComponent={Link} href="/Goals">
-            <ListItemIcon>
-              <CrisisAlertOutlinedIcon />
+        <ListItem disablePadding color="primary">
+          <ListItemButton color="primary" LinkComponent={Link} href="/Goals">
+            <ListItemIcon color="primary">
+              <CrisisAlertOutlinedIcon color="primary" />
             </ListItemIcon>
-            <ListItemText primary="Goals" />
+            <ListItemText color="primary" primary="Goals" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
           <ListItemButton LinkComponent={Link} href="/Statistics">
             <ListItemIcon>
-              <TrendingUpOutlinedIcon />
+              <TrendingUpOutlinedIcon color="primary" />
             </ListItemIcon>
             <ListItemText id="title" primary="Statistics" />
           </ListItemButton>
@@ -66,7 +66,7 @@ function Sidebar() {
           <ListItem disablePadding>
             <ListItemButton LinkComponent={Link} href="/Settings">
               <ListItemIcon>
-                <SettingsOutlinedIcon />
+                <SettingsOutlinedIcon color="primary" />
               </ListItemIcon>
               <ListItemText primary="Settings" />
             </ListItemButton>
@@ -74,7 +74,7 @@ function Sidebar() {
           <ListItem disablePadding>
             <ListItemButton LinkComponent={Link} href="/Logout">
               <ListItemIcon>
-                <LogoutOutlinedIcon />
+                <LogoutOutlinedIcon color="primary" />
               </ListItemIcon>
               <ListItemText primary="Logout" />
             </ListItemButton>
