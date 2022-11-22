@@ -16,6 +16,7 @@ import Settings from './pages/Settings';
 import Layout from './pages/Layout';
 import Login from './pages/Login';
 import { Logout } from '@mui/icons-material';
+import Register from "./pages/Register";
 
 const queryClient = new QueryClient();
 
