@@ -7,6 +7,7 @@ import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import Box from '@mui/material/Box';
 
 
 export interface BookCardProps {
@@ -25,22 +26,33 @@ const BookCard: React.FC<BookCardProps> = (
         const handleFavoriteClick = () => {};
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
-        <CardHeader
-            title={title.length < maxTitleLength ? title : `${title.slice(0, maxTitleLength)}...`}
-            subheader={subheader.length < maxTitleLength ? subheader : `${subheader.slice(0, maxTitleLength)}...`}
-        />
-        <CardMedia
-            component="img"
-            height="194"
-            image={imgSrc}
-            alt={imgAlt}
-        />
-        <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites" onClick={handleFavoriteClick}>
-            <FavoriteIcon />
-            </IconButton>
-        </CardActions>
+        <Card sx={{ maxWidth: 200,p: 1,m:1}}>
+            
+            <CardMedia
+                component="img"
+                height={50}
+                image={imgSrc}
+                alt={imgAlt}
+            />
+            <Box display="flex">
+            <CardHeader
+                justifyContent="center"
+                sx={{m:-2,flexGrow:1}}
+                titleTypographyProps={{variant:'h6'}}
+                subheaderTypographyProps={{variant:'subtitle2'}}
+                title={title.length < maxTitleLength ? title : `${title.slice(0, maxTitleLength)}...`}
+                subheader={subheader.length < maxTitleLength ? subheader : `${subheader.slice(0, maxTitleLength)}...`}
+            >
+                
+            </CardHeader>
+            <CardActions>
+                    <IconButton aria-label="add to favorites" onClick={handleFavoriteClick}>
+                    <FavoriteIcon />
+                    </IconButton>
+                </CardActions>
+            </Box>
+           
+           
         </Card>
     );
 };

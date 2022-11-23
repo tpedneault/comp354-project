@@ -48,7 +48,7 @@ function Dashboard() {
           </div>
         </div>
 
-        <Box sx={{ bgcolor: "#cfe8fc", height: "100vh" }} >
+        <Box sx={{ bgcolor: "#cfe8fc"}} >
           <Shelf></Shelf>
         </Box>
         
