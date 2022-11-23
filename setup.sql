@@ -5,7 +5,8 @@ CREATE TABLE IF NOT EXISTS `books` (
     `publisher` varchar(255) NOT NULL,
     `author` varchar(255) NOT NULL,
     `cover_url` varchar(512) NOT NULL,
-
+    `category` varchar(512) NOT NULL,
+    
     PRIMARY KEY (`id`) 
 );
 
