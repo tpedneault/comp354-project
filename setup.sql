@@ -1,7 +1,6 @@
 CREATE TABLE IF NOT EXISTS `books` (
     `id` varchar(10) NOT NULL,
     `title` varchar(255) NOT NULL,
-    `year` int(4) NOT NULL,
     `publisher` varchar(255) NOT NULL,
     `author` varchar(255) NOT NULL,
     `cover_url` varchar(512) NOT NULL,
