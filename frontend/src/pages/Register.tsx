@@ -24,7 +24,7 @@ function Register() {
               variant="outlined"
             />
           </div>
-          <Button variant="contained" href="">
+          <Button variant="contained" href="/">
             Create Account
           </Button>
           <Button variant="text" href="login">
