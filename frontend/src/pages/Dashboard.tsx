@@ -56,6 +56,16 @@ function Dashboard() {
         <Reading />
         <ToRead />
         <Completed />
+        <div className="pt-10 flex justify-center pb-10">
+          <ButtonGroup variant="outlined" aria-label="outlined button group">
+            <Button className="px-20" color="primary">
+              Shelf View
+            </Button>
+            <Button className="px-20" color="primary">
+              List View
+            </Button>
+          </ButtonGroup>
+        </div>
       </Container>
     </>
   );
