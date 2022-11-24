@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { Button, Card, CardMedia, Grid } from "@mui/material";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ChangeShelf from "../ChangeShelf";
+import { useQuery } from "react-query";
+import axios from "axios";
 
 const shelfData = [
   {
@@ -24,6 +26,11 @@ const shelfData = [
 ];
 
 function Recommended() {
+  const {data: getReading} = useQuery( ["reading"], async() =>{
+    const response = await axios.get("http://localhost:3001/id/books/reading");
+    return response.data;
+  });
+  
   return (
     <div className="w-full mt-10">
       <h1 className="text-2xl font-bold text-[#0d47a1] mb-4">Recommended</h1>
