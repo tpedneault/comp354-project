@@ -6,9 +6,13 @@ import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import SearchIcon from "@mui/icons-material/Search";
 import { Button, ButtonGroup } from "@material-ui/core";
-import Shelf from "../components/shelf";
 import Container from "@mui/material/Container";
 import { margin } from "@mui/system";
+import Recommended from "../components/shelf/Recommended";
+import Favorites from "../components/shelf/Favourites";
+import Reading from "../components/shelf/Reading";
+import ToRead from "../components/shelf/ToRead";
+import Completed from "../components/shelf/Completed";
 
 function Dashboard() {
   return (
@@ -47,11 +51,11 @@ function Dashboard() {
             </Box>
           </div>
         </div>
-
-        <Box sx={{ bgcolor: "#cfe8fc"}} >
-          <Shelf></Shelf>
-        </Box>
-        
+        <Recommended />
+        <Favorites />
+        <Reading />
+        <ToRead />
+        <Completed />
       </Container>
     </>
   );
