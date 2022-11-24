@@ -24,7 +24,7 @@ const shelfData = [
 function Completed() {
   return (
     <div className="w-full mt-10">
-      <h1 className="text-xl font-bold text-[#0d47a1] mb-2">Completed</h1>
+      <h1 className="text-2xl font-bold text-[#0d47a1] mb-4">Completed</h1>
 
       <Grid container spacing={3}>
         {shelfData.map((book) => (
