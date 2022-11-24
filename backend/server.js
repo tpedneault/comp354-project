@@ -5,8 +5,8 @@ const port = 3001;
 
 const db = mysql.createPool({
     host: 'mysql_db',
-    user: 'admin',
-    password: 'admin',
+    user: 'root',
+    password: 'password',
     database: 'books'
 });
 
@@ -19,8 +19,8 @@ app.get('/', (req, res) => {
     res.send("books api");
 });
 
-app.get('/get', (req, res) => {
-    const select = "SELECT * FROM books";
+app.get('/books', (req, res) => {
+    const select = "SELECT * FROM books LIMIT 5";
     db.query(select, (err, result) => {
         res.send(result);
     })
