@@ -24,7 +24,7 @@ const shelfData = [
 function Favorites() {
   return (
     <div className="w-full mt-10">
-      <h1 className="text-xl font-bold text-[#0d47a1] mb-2">Recommended</h1>
+      <h1 className="text-xl font-bold text-[#0d47a1] mb-2">Favorites</h1>
 
       <Grid container spacing={3}>
         {shelfData.map((book) => (

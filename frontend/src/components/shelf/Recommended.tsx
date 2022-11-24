@@ -30,14 +30,6 @@ function Recommended() {
         {shelfData.map((book) => (
           <Card sx={{ width: 150, position: "relative", margin: "20px" }}>
             <CardMedia component="img" height="140" image={book.img} />
-            <Button
-              size="medium"
-              sx={{ position: "absolute", bottom: 5, right: 0, left: 0 }}
-            >
-              <div className="bg-white w-2/3 rounded-full">
-                <FavoriteBorderOutlinedIcon />
-              </div>
-            </Button>
           </Card>
         ))}
       </Grid>
