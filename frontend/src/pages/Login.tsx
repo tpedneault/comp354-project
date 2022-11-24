@@ -18,9 +18,13 @@ function Login() {
               label="Password"
               variant="outlined"
             />
-            <Button variant="contained">Log In</Button>
+            <Button variant="contained" href="/">
+              Log In
+            </Button>
           </div>
-          <Button variant="text">Create Account</Button>
+          <Button variant="text" href="register">
+            Create Account
+          </Button>
           <Button variant="text">Forgot Password</Button>
         </div>
       </Container>

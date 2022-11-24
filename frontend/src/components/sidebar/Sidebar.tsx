@@ -72,7 +72,7 @@ function Sidebar() {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton LinkComponent={Link} href="/Logout">
+            <ListItemButton LinkComponent={Link} href="/login">
               <ListItemIcon>
                 <LogoutOutlinedIcon color="primary" />
               </ListItemIcon>
