@@ -49,7 +49,7 @@ function Shelf() {
 return (
   <>
   <h1>
-    To Read
+    Recommendations
   </h1>
   <Grid container spacing={2} >
     <Box sx={{ boxShadow: 3, p: 2, m: 2, overflowX: 'auto'}}>
@@ -98,7 +98,9 @@ return (
         />
       </Grid>
     </Box>
-    
+    <h1>
+      To Read
+    </h1>
     <Box sx={{ boxShadow: 3, p: 2, m: 2}}>
       <Grid item style={{ display: 'flex' }} key={`Book-Card:${1}`}>
         <BookCard
@@ -127,6 +129,9 @@ return (
         />
       </Grid>
     </Box>
+    <h1>
+      Reading      
+    </h1>
     <Box sx={{ boxShadow: 3, p: 2, m: 2}}>
       <Grid item style={{ display: 'flex' }} key={`Book-Card:${1}`}>
         <BookCard
@@ -155,7 +160,37 @@ return (
         />
       </Grid>
     </Box>
-    
+    <h1>
+    Completed
+    </h1>
+    <Box sx={{ boxShadow: 3, p: 2, m: 2}}>
+      <Grid item style={{ display: 'flex' }} key={`Book-Card:${1}`}>
+        <BookCard
+          title="Harry Potter Prisoner of Azkaban"
+          subheader="J.K. Rowling"
+          imgSrc={HarryPotterAzkaban}
+          imgAlt="Book Cover"
+        />
+        <BookCard
+          title="Harry Potter Prisoner of Azkaban"
+          subheader="J.K. Rowling"
+          imgSrc={HarryPotterAzkaban}
+          imgAlt="Book Cover"
+        />
+        <BookCard
+          title="Harry Potter Prisoner of Azkaban"
+          subheader="J.K. Rowling"
+          imgSrc={HarryPotterAzkaban}
+          imgAlt="Book Cover"
+        />
+        <BookCard
+          title="Harry Potter Prisoner of Azkaban"
+          subheader="J.K. Rowling"
+          imgSrc={HarryPotterAzkaban}
+          imgAlt="Book Cover"
+        />
+      </Grid>
+    </Box>
   </Grid>
   </>
 );
