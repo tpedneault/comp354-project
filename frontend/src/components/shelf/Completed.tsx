@@ -21,6 +21,22 @@ const shelfData = [
     isbn: "Breakfast",
     isFavourite: false,
   },
+  {
+    img: "cover.webp",
+    title: "The Gravity of Us",
+    isbn: "Breakfast",
+    isFavourite: false,
+  },
+  {
+    img: "cover.webp",
+    isbn: "Breakfast",
+    isFavourite: false,
+  },
+  {
+    img: "cover.webp",
+    isbn: "Breakfast",
+    isFavourite: false,
+  },
 ];
 
 function Completed() {

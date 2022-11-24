@@ -61,7 +61,7 @@ function Dashboard() {
             <Button className="px-20" color="primary">
               Shelf View
             </Button>
-            <Button className="px-20" color="primary">
+            <Button className="px-20" color="primary" variant="contained">
               List View
             </Button>
           </ButtonGroup>
