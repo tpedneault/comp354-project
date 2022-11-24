@@ -5,8 +5,8 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 
 const shelfData = [
   {
+    isbn: "1234567890",
     img: "cover.webp",
-    isbn: "Breakfast",
     isFavourite: false,
   },
   {
@@ -28,7 +28,10 @@ function Favorites() {
 
       <Grid container spacing={3}>
         {shelfData.map((book) => (
-          <Card sx={{ width: 150, position: "relative", margin: "20px" }}>
+          <Card
+            id={book.isbn}
+            sx={{ width: 150, position: "relative", margin: "20px" }}
+          >
             <CardMedia component="img" height="140" image={book.img} />
             <Button
               size="medium"

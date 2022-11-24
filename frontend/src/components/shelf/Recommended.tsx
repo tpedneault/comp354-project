@@ -28,7 +28,10 @@ function Recommended() {
 
       <Grid container spacing={3}>
         {shelfData.map((book) => (
-          <Card sx={{ width: 150, position: "relative", margin: "20px" }}>
+          <Card
+            id={book.isbn}
+            sx={{ width: 150, position: "relative", margin: "20px" }}
+          >
             <CardMedia component="img" height="140" image={book.img} />
           </Card>
         ))}
