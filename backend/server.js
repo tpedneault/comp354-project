@@ -19,12 +19,65 @@ app.get('/', (req, res) => {
     res.send("books api");
 });
 
-app.get('/books', (req, res) => {
+app.get('/api/books', (req, res) => {
     const select = "SELECT * FROM books LIMIT 5";
     db.query(select, (err, result) => {
         res.send(result);
     })
 });
+
+app.get('/api/:user/shelves', (req, res) => {
+    const select = `SELECT DISTINCT name,  books.id, title, publisher, author, cover_url, category FROM book_shelves INNER JOIN shelves ON shelves.id=shelf_id INNER JOIN books ON books.id=book_id WHERE user_id=1`;
+    db.query(select, (err, result) => {
+        let shelves = [];
+        result.forEach((book) => {
+            // Does the current shelf already exist?
+            if(shelves.filter(e => e.name == book.name).length == 0) {
+                shelves.push({
+                    name: book.name,
+                    books: [ book ],
+                });
+            } else {
+                for(let i = 0; i < shelves.length; i++) {
+                    if(shelves[i].name == book.name) {
+                        shelves[i].books.push(book);
+                    }
+                }
+            }
+        });
+        res.send(shelves);
+    });
+});
+
+app.get('/api/:user/shelves/:shelf', (req, res) => {
+    const select = `SELECT DISTINCT name, books.id, title, publisher, author, cover_url, category FROM book_shelves INNER JOIN shelves ON shelves.id=shelf_id INNER JOIN books ON books.id=book_id WHERE user_id=1 AND shelf_id=${req.params.shelf}`;
+    db.query(select, (err, result) => {
+        let shelves = [];
+        result.forEach((book) => {
+            // Does the current shelf already exist?
+            if(shelves.filter(e => e.name == book.name).length == 0) {
+                shelves.push({
+                    name: book.name,
+                    books: [ book ],
+                });
+            } else {
+                for(let i = 0; i < shelves.length; i++) {
+                    if(shelves[i].name == book.name) {
+                        shelves[i].books.push(book);
+                    }
+                }
+            }
+        });
+        res.send(shelves);
+    });
+});
+
+app.get('/api/:user/favorites', (req, res) => {
+    const select = `SELECT DISTINCT users.id, books.id, title, publisher, author, cover_url, category FROM users INNER JOIN book_favorites, books WHERE users.id=${req.params.user} AND book_id = books.id`
+    db.query(select, (err, result) => {
+        res.send(result);
+    });
+})
 
 app.listen(port, () => {
     console.log(`Book Project Backend listening on port:${port}`);
