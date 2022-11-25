@@ -3,45 +3,27 @@ import PropTypes from "prop-types";
 import { Button, Card, CardMedia, Grid } from "@mui/material";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ChangeShelf from "../ChangeShelf";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-const shelfData = [
-  {
-    img: "cover.webp",
-    title: "The Gravity of Us",
-    isbn: "Breakfast",
-    isFavourite: false,
-  },
-  {
-    img: "cover.webp",
-    isbn: "Breakfast",
-    isFavourite: false,
-  },
-  {
-    img: "cover.webp",
-    isbn: "Breakfast",
-    isFavourite: false,
-  },
-];
-
 function Favorites() {
-  const {data: getFavorites} = useQuery( ["reading"], async() =>{
-    const response = await axios.get("http://localhost:3001/api/id/Favorites");
-    return response.data;
+  const {data: getFavorites} = useQuery( ["favorites"], async() =>{
+    const response = await axios.get("http://localhost:3001/books");
+    return response;
   });
-  
+
   return (
     <div className="w-full mt-10">
       <h1 className="text-2xl font-bold text-[#0d47a1] mb-4">Favorites</h1>
 
       <Grid container spacing={3}>
-        {shelfData.map((book) => (
+        {getFavorites?.data.map((book: any) => (
           <Card
-            id={book.isbn}
+            id={book.id}
+            key={book.id}
             sx={{ width: 150, position: "relative", margin: "20px" }}
           >
-            <CardMedia component="img" height="140" image={book.img} />
+            <CardMedia component="img" height="140" image={book.cover_url} />
             <div className="bottom-0 bg-blue-50 h-5"></div>
             <Button
               size="medium"
@@ -59,7 +41,5 @@ function Favorites() {
     </div>
   );
 }
-
-Favorites.propTypes = {};
 
 export default Favorites;

@@ -7,7 +7,6 @@ import FormControl from "@mui/material/FormControl";
 import SearchIcon from "@mui/icons-material/Search";
 import { Button, ButtonGroup } from "@material-ui/core";
 import Container from "@mui/material/Container";
-import { margin } from "@mui/system";
 import Recommended from "../components/shelf/Recommended";
 import Favorites from "../components/shelf/Favourites";
 import Reading from "../components/shelf/Reading";
@@ -51,11 +50,11 @@ function Dashboard() {
             </Box>
           </div>
         </div>
-        <Recommended />
-        <Favorites />
-        <Reading />
         <ToRead />
+        <Reading />
         <Completed />
+        <Favorites />
+        <Recommended />
       </Container>
     </>
   );
