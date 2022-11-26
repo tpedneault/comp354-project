@@ -12,7 +12,10 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {Md5} from 'ts-md5';
 import {useGlobalContext} from "../App";
-
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 function Copyright(props: any) {
@@ -29,21 +32,39 @@ function Copyright(props: any) {
 }
 
 const theme = createTheme();
+let email = "";
+let password = "";
 function SignIn() {
+    const navigate = useNavigate();
     const {userID, setUserID} = useGlobalContext();
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
 
-    const hashedPassword=data.get('password')?.toString()!;
-    console.log(userID);
-    console.log(Md5.hashStr(hashedPassword));
-
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+      const hashedPassword=data.get('password')?.toString()!;
+      email = data.get('email')?.toString()!;
+      password = Md5.hashStr(hashedPassword).toString();
+      refetch();
+      // eslint-disable-next-line react-hooks/rules-of-hooks
   };
+  const fetchData: () => any = async() =>{
+    const URL =`http://localhost:3001/api/signin/${email}/${password}`;
+    const response = await axios.get(URL);
+    return response;
+  }
+  const {data,refetch} = useQuery( ["signin"], fetchData,{enabled: false});
+  useEffect(() => {
+    if(data !== undefined){
+      if(data.data.length !== 0){
+        console.log(data.data[0].id);
+        setUserID(data.data[0].id);
+        navigate("/");
+      }
+      else{
+        alert("Wrong email or password");
+      }
+    }
+  });
 
   return (
     <ThemeProvider theme={theme}>

@@ -32,13 +32,13 @@ export type GlobalContent = {
     setUserID: (userID: number) => void;
 }
 export const MyGlobalContext = createContext<GlobalContent>({
-    userID: 1,
+    userID: 0,
     setUserID: () => { },
 })
 export const useGlobalContext = () => useContext(MyGlobalContext);
 
 function App() {
-  const [userID, setUserID] = useState(1);
+  const [userID, setUserID] = useState(0);
   return (
     <MyGlobalContext.Provider value={{ userID, setUserID }}>
       <QueryClientProvider client={queryClient}>

@@ -12,8 +12,13 @@ import Favorites from "../components/shelf/Favourites";
 import Reading from "../components/shelf/Reading";
 import ToRead from "../components/shelf/ToRead";
 import Completed from "../components/shelf/Completed";
-
+import { Navigate } from "react-router-dom";
+import { useGlobalContext } from "../App";
 function Dashboard() {
+  const {userID, setUserID} = useGlobalContext();
+  if (userID === 0) {
+    return <Navigate to="/SignIn" />
+  }
   return (
     <>
       <Container maxWidth="xl">
@@ -51,7 +56,6 @@ function Dashboard() {
           </div>
         </div>
         <ToRead />
-
         <Reading />
         <Completed />
         <Favorites />

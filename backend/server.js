@@ -27,7 +27,7 @@ app.get('/api/books', (req, res) => {
 });
 
 app.get('/api/:user/shelves', (req, res) => {
-    const select = `SELECT DISTINCT name,  books.id, title, publisher, author, cover_url, category FROM book_shelves INNER JOIN shelves ON shelves.id=shelf_id INNER JOIN books ON books.id=book_id WHERE user_id=1`;
+    const select = `SELECT DISTINCT name,  books.id, title, publisher, author, cover_url, category FROM book_shelves INNER JOIN shelves ON shelves.id=shelf_id INNER JOIN books ON books.id=book_id WHERE user_id=${req.params.user}`;
     db.query(select, (err, result) => {
         let shelves = [];
         result.forEach((book) => {
@@ -50,7 +50,7 @@ app.get('/api/:user/shelves', (req, res) => {
 });
 
 app.get('/api/:user/shelves/:shelf', (req, res) => {
-    const select = `SELECT DISTINCT name, books.id, title, publisher, author, cover_url, category FROM book_shelves INNER JOIN shelves ON shelves.id=shelf_id INNER JOIN books ON books.id=book_id WHERE user_id=1 AND shelf_id=${req.params.shelf}`;
+    const select = `SELECT DISTINCT name, books.id, title, publisher, author, cover_url, category FROM book_shelves INNER JOIN shelves ON shelves.id=shelf_id INNER JOIN books ON books.id=book_id WHERE user_id=${req.params.user} AND shelf_id=${req.params.shelf}`;
     db.query(select, (err, result) => {
         let shelves = [];
         result.forEach((book) => {
@@ -78,7 +78,13 @@ app.get('/api/:user/favorites', (req, res) => {
         res.send(result);
     });
 })
-
+app.get('/api/signin/:email/:password', (req, res) => {
+    const select = `SELECT * FROM users WHERE email='${req.params.email}' AND password_md5='${req.params.password}'`;
+    db.query
+    (select, (err, result) => {
+        res.send(result);
+    });
+});
 app.listen(port, () => {
     console.log(`Book Project Backend listening on port:${port}`);
 });

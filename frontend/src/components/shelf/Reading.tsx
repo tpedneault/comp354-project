@@ -9,6 +9,7 @@ import { useGlobalContext } from "../../App";
 
 function Reading() {
   const {userID} = useGlobalContext();
+  console.log(userID);
   const {data: getReading} = useQuery( ["reading"], async() =>{
     const URL =`http://localhost:3001/api/${userID}/shelves/2`;
     const response = await axios.get(URL);
