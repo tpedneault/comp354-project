@@ -18,19 +18,27 @@ import { Logout } from '@mui/icons-material';
 import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+      cacheTime: 1000 * 60 * 5,
+    },
+  },
+});
+
 export type GlobalContent = {
     userID: number;
     setUserID: (userID: number) => void;
 }
 export const MyGlobalContext = createContext<GlobalContent>({
-    userID: 0,
+    userID: 1,
     setUserID: () => { },
 })
 export const useGlobalContext = () => useContext(MyGlobalContext);
 
 function App() {
-  const [userID, setUserID] = useState(0);
+  const [userID, setUserID] = useState(1);
   return (
     <MyGlobalContext.Provider value={{ userID, setUserID }}>
       <QueryClientProvider client={queryClient}>

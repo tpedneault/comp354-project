@@ -11,9 +11,10 @@ const Layout = () => {
   const classes = useStyles();
     return (
       <>
-      <Outlet />
+
       <div className={classes.container}>
         <Sidebar />
+        <Outlet />
         </div>
       </>
     );

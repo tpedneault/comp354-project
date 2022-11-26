@@ -5,10 +5,13 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import ChangeShelf from "../ChangeShelf";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useGlobalContext } from "../../App";
 
 function Favorites() {
+  const {userID} = useGlobalContext();
   const {data: getFavorites} = useQuery( ["favorites"], async() =>{
-    const response = await axios.get("http://localhost:3001/books");
+    const URL =`http://localhost:3001/api/${userID}/favorites`;
+    const response = await axios.get(URL);
     return response;
   });
 

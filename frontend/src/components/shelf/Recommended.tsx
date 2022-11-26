@@ -8,7 +8,7 @@ import axios from "axios";
 
 function Recommended() {
   const {data: getRecommended} = useQuery( ["recommended"], async() =>{
-    const response = await axios.get("http://localhost:3001/books");
+    const response = await axios.get("http://localhost:3001/api/books");
     return response;
   });
   

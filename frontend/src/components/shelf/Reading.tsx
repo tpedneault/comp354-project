@@ -1,15 +1,17 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Button, Card, CardMedia, Grid } from "@mui/material";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ChangeShelf from "../ChangeShelf";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useGlobalContext } from "../../App";
 
 
 function Reading() {
+  const {userID} = useGlobalContext();
   const {data: getReading} = useQuery( ["reading"], async() =>{
-    const response = await axios.get("http://localhost:3001/books");
+    const URL =`http://localhost:3001/api/${userID}/shelves/2`;
+    const response = await axios.get(URL);
     return response;
   });
   return (
@@ -17,7 +19,7 @@ function Reading() {
       <h1 className="text-2xl font-bold text-[#0d47a1] mb-4">Reading</h1>
 
       <Grid container spacing={3}>
-        {getReading?.data.map((book: any) => (
+        {getReading?.data[0].books.map((book: any) => (
           <Card
             id={book.id}
             key={book.id}
