@@ -1,5 +1,4 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useReducer } from "react";
 import { Button, Card, CardMedia, Grid } from "@mui/material";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ChangeShelf from "../ChangeShelf";
@@ -7,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 function Recommended() {
+    const [reducerValue, forceUpdate] = useReducer(x => x +1,0)
   const {data: getRecommended} = useQuery( ["recommended"], async() =>{
     const response = await axios.get("http://localhost:3001/api/books");
     return response;
@@ -33,7 +33,7 @@ function Recommended() {
                 <FavoriteBorderOutlinedIcon />
               </div>
             </Button>
-            <ChangeShelf />
+            <ChangeShelf Book={book.id} onChange={forceUpdate}/>
           </Card>
         ))}
       </Grid>

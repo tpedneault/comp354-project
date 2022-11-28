@@ -13,9 +13,11 @@ import Reading from "../components/shelf/Reading";
 import ToRead from "../components/shelf/ToRead";
 import Completed from "../components/shelf/Completed";
 import { Navigate } from "react-router-dom";
-import { useGlobalContext } from "../App";
+import { useGlobalContext } from "../App";//create your forceUpdate hook
+
+
 function Dashboard() {
-  const {userID, setUserID} = useGlobalContext();
+  const {userID} = useGlobalContext();
   if (userID === 0) {
     return <Navigate to="/SignIn" />
   }

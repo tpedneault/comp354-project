@@ -7,24 +7,31 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
-import PersonIcon from "@mui/icons-material/Person";
 import AddIcon from "@mui/icons-material/Add";
 import TopicIcon from "@mui/icons-material/Topic";
 import { blue } from "@mui/material/colors";
 import { DialogContent } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import { useGlobalContext } from "../App";
 
-const shelves = ["Reading", "To Read", "Completed"];
+enum shelves {
+  ToRead = '1', Reading = '2', Completed = '3',
+};
 
 export interface ChangeShelfProps {
   open: boolean;
   selectedValue: string;
   onClose: (value: string) => void;
 }
+export interface ShelfChangeProps {
+  onChange: () => void,
+  Book: string
+}
 
 function SimpleDialog(props: ChangeShelfProps) {
   const { onClose, selectedValue, open } = props;
-
   const handleClose = () => {
     onClose(selectedValue);
   };
@@ -32,13 +39,12 @@ function SimpleDialog(props: ChangeShelfProps) {
   const handleListItemClick = (value: string) => {
     onClose(value);
   };
-
   return (
     <Dialog onClose={handleClose} open={open}>
       <List sx={{ pt: 0 }}>
         <DialogTitle sx={{ color: "#1976d2" }}>Update shelf</DialogTitle>
         <DialogContent dividers>
-          {shelves.map((shelf) => (
+          {Object.keys(shelves).map((shelf) => (
             <ListItem
               button
               onClick={() => handleListItemClick(shelf)}
@@ -66,18 +72,43 @@ function SimpleDialog(props: ChangeShelfProps) {
   );
 }
 
-export default function ChangeShelf() {
+export default function ChangeShelf({onChange,Book}: ShelfChangeProps) {
+  const {userID} = useGlobalContext();
   const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(shelves[1]);
-
+  const [selectedState, setSelectedState] = React.useState("");
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = (value: string) => {
     setOpen(false);
-    setSelectedValue(value);
+    if(value === "ToRead"){
+      setSelectedState(shelves.ToRead);
+    }
+    else if(value === "Reading"){
+      setSelectedState(shelves.Reading);
+    }
+    else if(value === "Completed"){
+      setSelectedState(shelves.Completed);
+    }
+
+    setTimeout(function(){
+      refetch();
+    },200);
+    setTimeout(function(){
+      onChange();
+    console.log('refresh!');
+    },400)
+
   };
+  
+  const fetchData: () => any = async() =>{
+    const URL =`http://localhost:3001/api/${userID}/changeShelf/${Book}/${selectedState}`;
+    const response = await axios.get(URL);
+    return response;
+  }
+  const {data,refetch} = useQuery( ["changeShelf"], fetchData,{enabled: false});
+
 
   return (
     <div>
@@ -91,7 +122,7 @@ export default function ChangeShelf() {
         </div>
       </Button>
       <SimpleDialog
-        selectedValue={selectedValue}
+        selectedValue={selectedState}
         open={open}
         onClose={handleClose}
       />

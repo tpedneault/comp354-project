@@ -77,13 +77,19 @@ app.get('/api/:user/favorites', (req, res) => {
     db.query(select, (err, result) => {
         res.send(result);
     });
-})
+});
 app.get('/api/signin/:email/:password', (req, res) => {
     const select = `SELECT * FROM users WHERE email='${req.params.email}' AND password_md5='${req.params.password}'`;
     db.query
     (select, (err, result) => {
         res.send(result);
     });
+});
+app.get('/api/:user/changeshelf/:bookID/:toShelf', (req, res) => {
+    const update = `update book_shelves set shelf_id='${req.params.toShelf}' where user_id='${req.params.user}' AND book_id='${req.params.bookID}'`
+    db.query(update,(err,result) => {
+        res.send(result);
+    })
 });
 app.listen(port, () => {
     console.log(`Book Project Backend listening on port:${port}`);

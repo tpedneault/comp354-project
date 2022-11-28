@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { Button, Card, CardMedia, Grid } from "@mui/material";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ChangeShelf from "../ChangeShelf";
@@ -8,6 +8,7 @@ import { useGlobalContext } from "../../App";
 
 function Completed() {
   const {userID} = useGlobalContext();
+  const [reducerValue, forceUpdate] = useReducer(x => x +1,0)
   const {data: getCompleted} = useQuery( ["completed"], async() =>{
     const URL =`http://localhost:3001/api/${userID}/shelves/3`;
     const response = await axios.get(URL);
@@ -35,7 +36,7 @@ function Completed() {
                 <FavoriteBorderOutlinedIcon />
               </div>
             </Button>
-            <ChangeShelf />
+            <ChangeShelf Book={book.id} onChange={forceUpdate} />
           </Card>
         ))}
       </Grid>

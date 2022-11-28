@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import PropTypes from "prop-types";
 import { Button, Card, CardMedia, Grid } from "@mui/material";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
@@ -9,6 +9,7 @@ import { useGlobalContext } from "../../App";
 
 function Favorites() {
   const {userID} = useGlobalContext();
+  const [reducerValue, forceUpdate] = useReducer(x => x +1,0)
   const {data: getFavorites} = useQuery( ["favorites"], async() =>{
     const URL =`http://localhost:3001/api/${userID}/favorites`;
     const response = await axios.get(URL);
@@ -36,7 +37,7 @@ function Favorites() {
                 <FavoriteBorderOutlinedIcon />
               </div>
             </Button>
-            <ChangeShelf />
+            <ChangeShelf Book={book.id} onChange={forceUpdate} />
           </Card>
         ))}
       </Grid>

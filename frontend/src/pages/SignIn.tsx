@@ -53,11 +53,14 @@ function SignIn() {
     return response;
   }
   const {data,refetch} = useQuery( ["signin"], fetchData,{enabled: false});
+  
   useEffect(() => {
     if(data !== undefined){
       if(data.data.length !== 0){
         console.log(data.data[0].id);
         setUserID(data.data[0].id);
+        window.localStorage.setItem('id',userID.toString());
+        console.log(window.localStorage.getItem('id'));
         navigate("/");
       }
       else{

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { Button, Card, CardMedia, Grid } from "@mui/material";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ChangeShelf from "../ChangeShelf";
@@ -9,6 +9,7 @@ import { useGlobalContext } from "../../App";
 
 function ToRead() {
   const {userID} = useGlobalContext();
+  const [reducerValue, forceUpdate] = useReducer(x => x +1,0)
   const {data: toRead} = useQuery( ["toRead"], async() =>{
     const URL =`http://localhost:3001/api/${userID}/shelves/1`;
     const response = await axios.get(URL);
@@ -35,7 +36,7 @@ function ToRead() {
                 <FavoriteBorderOutlinedIcon />
               </div>
             </Button>
-            <ChangeShelf />
+            <ChangeShelf onChange={forceUpdate} Book={book.id}/>
           </Card>
         ))}
       </Grid>
@@ -43,7 +44,5 @@ function ToRead() {
     </div>
   );
 }
-
-ToRead.propTypes = {};
 
 export default ToRead;
