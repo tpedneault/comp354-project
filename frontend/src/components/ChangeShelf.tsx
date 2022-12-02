@@ -15,7 +15,6 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { useGlobalContext } from "../App";
-import { useEffect } from "react";
 
 enum shelves {
   ToRead = '1', Reading = '2', Completed = '3',
@@ -111,7 +110,7 @@ export default function ChangeShelf({onChange,Book}: ShelfChangeProps) {
     return response;
   }
   const {data,refetch} = useQuery( ["changeShelf"], fetchData,{enabled: false});
-  
+
   return (
     <div>
       <Button

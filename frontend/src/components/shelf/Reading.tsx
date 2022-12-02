@@ -9,7 +9,7 @@ import { useGlobalContext } from "../../App";
 
 function Reading() {
   const {userID} = useGlobalContext();
-  const {refreshNumber, setRefreshNumber} = useGlobalContext();
+  const {refreshNumber} = useGlobalContext();
   const [reducerValue, forceUpdate] = useReducer(x => x +1,0)
 
   const fetchData: () => any = async() =>{

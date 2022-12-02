@@ -14,7 +14,7 @@ import Goals from './pages/Goals';
 import Statistics from './pages/Statistics';
 import Settings from './pages/Settings';
 import Layout from './pages/Layout';
-import { Logout } from '@mui/icons-material';
+import  Logout  from './pages/Logout';
 import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
 
