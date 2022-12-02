@@ -53,14 +53,21 @@ function SignIn() {
     return response;
   }
   const {data,refetch} = useQuery( ["signin"], fetchData,{enabled: false});
-  
+  //Makeshift way to keep user id in local storage and pull when on refresh
+  useEffect(() => {
+    if(localStorage.getItem("userID") !== null && localStorage.getItem("userID") !== undefined && localStorage.getItem("userID") !== "" && localStorage.getItem("userID") !== "0" ){
+      setUserID(Number(localStorage.getItem("userID")));
+      navigate("/");
+
+    }
+  });
   useEffect(() => {
     if(data !== undefined){
       if(data.data.length !== 0){
         console.log(data.data[0].id);
         setUserID(data.data[0].id);
-        window.localStorage.setItem('id',userID.toString());
-        console.log(window.localStorage.getItem('id'));
+        localStorage.setItem('userID',data.data[0].id);
+        console.log(localStorage.getItem('userID'));
         navigate("/");
       }
       else{

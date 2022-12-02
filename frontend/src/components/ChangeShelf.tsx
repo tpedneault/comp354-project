@@ -97,7 +97,7 @@ export default function ChangeShelf({onChange,Book}: ShelfChangeProps) {
     },200);
     setTimeout(function(){
       onChange();
-    console.log('refresh!');
+      console.log('refresh!');
     },400)
 
   };

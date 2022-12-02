@@ -39,6 +39,7 @@ export const useGlobalContext = () => useContext(MyGlobalContext);
 
 function App() {
   const [userID, setUserID] = useState(0);
+  console.log(localStorage.getItem('id'));
   return (
     <MyGlobalContext.Provider value={{ userID, setUserID }}>
       <QueryClientProvider client={queryClient}>
