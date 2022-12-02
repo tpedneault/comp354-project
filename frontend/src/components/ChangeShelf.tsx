@@ -15,6 +15,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { useGlobalContext } from "../App";
+import { useEffect } from "react";
 
 enum shelves {
   ToRead = '1', Reading = '2', Completed = '3',
@@ -74,6 +75,7 @@ function SimpleDialog(props: ChangeShelfProps) {
 
 export default function ChangeShelf({onChange,Book}: ShelfChangeProps) {
   const {userID} = useGlobalContext();
+  const {refreshNumber, setRefreshNumber} = useGlobalContext();
   const [open, setOpen] = React.useState(false);
   const [selectedState, setSelectedState] = React.useState("");
   const handleClickOpen = () => {
@@ -97,7 +99,8 @@ export default function ChangeShelf({onChange,Book}: ShelfChangeProps) {
     },200);
     setTimeout(function(){
       onChange();
-      console.log('refresh!');
+      setRefreshNumber(refreshNumber + 1);
+
     },400)
 
   };
@@ -108,8 +111,7 @@ export default function ChangeShelf({onChange,Book}: ShelfChangeProps) {
     return response;
   }
   const {data,refetch} = useQuery( ["changeShelf"], fetchData,{enabled: false});
-
-
+  
   return (
     <div>
       <Button

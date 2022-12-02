@@ -30,18 +30,22 @@ const queryClient = new QueryClient({
 export type GlobalContent = {
     userID: number;
     setUserID: (userID: number) => void;
+    refreshNumber: number;
+    setRefreshNumber: (refreshNumber: number) => void;
 }
 export const MyGlobalContext = createContext<GlobalContent>({
     userID: 0,
     setUserID: () => { },
+    refreshNumber: 0,
+    setRefreshNumber: () => { },
 })
 export const useGlobalContext = () => useContext(MyGlobalContext);
 
 function App() {
   const [userID, setUserID] = useState(0);
-  console.log(localStorage.getItem('id'));
+  const [refreshNumber, setRefreshNumber] = useState(0);
   return (
-    <MyGlobalContext.Provider value={{ userID, setUserID }}>
+    <MyGlobalContext.Provider value={{ userID, setUserID,refreshNumber,setRefreshNumber }}>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Routes>
