@@ -32,20 +32,25 @@ export type GlobalContent = {
     setUserID: (userID: number) => void;
     refreshNumber: number;
     setRefreshNumber: (refreshNumber: number) => void;
+    toUnfavorite: boolean;
+    setToUnfavorite: (toUnfavorite: boolean) => void;
 }
 export const MyGlobalContext = createContext<GlobalContent>({
     userID: 0,
     setUserID: () => { },
     refreshNumber: 0,
     setRefreshNumber: () => { },
+    toUnfavorite: false,
+    setToUnfavorite: () => { },
 })
 export const useGlobalContext = () => useContext(MyGlobalContext);
 
 function App() {
   const [userID, setUserID] = useState(0);
   const [refreshNumber, setRefreshNumber] = useState(0);
+  const [toUnfavorite, setToUnfavorite] = useState(false);
   return (
-    <MyGlobalContext.Provider value={{ userID, setUserID,refreshNumber,setRefreshNumber }}>
+    <MyGlobalContext.Provider value={{ userID, setUserID,refreshNumber,setRefreshNumber,toUnfavorite,setToUnfavorite }}>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Routes>

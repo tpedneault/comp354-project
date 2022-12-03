@@ -4,6 +4,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import ChangeShelf from "../ChangeShelf";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import FavoriteBook from "../FavoriteBook";
 
 function Recommended() {
     const [reducerValue, forceUpdate] = useReducer(x => x +1,0)
@@ -25,14 +26,7 @@ function Recommended() {
           >
             <CardMedia component="img" height="140" image={book.cover_url} />
             <div className="bottom-0 bg-blue-50 h-5"></div>
-            <Button
-              size="medium"
-              sx={{ position: "absolute", bottom: 0, left: 0 }}
-            >
-              <div className="bg-blue-50 w-full rounded-full">
-                <FavoriteBorderOutlinedIcon />
-              </div>
-            </Button>
+            <FavoriteBook Book={book.id}></FavoriteBook>
             <ChangeShelf Book={book.id} onChange={forceUpdate}/>
           </Card>
         ))}
@@ -42,6 +36,5 @@ function Recommended() {
   );
 }
 
-Recommended.propTypes = {};
 
 export default Recommended;

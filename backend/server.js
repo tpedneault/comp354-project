@@ -91,6 +91,25 @@ app.get('/api/:user/changeshelf/:bookID/:toShelf', (req, res) => {
         res.send(result);
     })
 });
+app.get('/api/:user/favoriteBook/:bookID', (req, res) => {
+    const insert = `insert into book_favorites(user_id,book_id) values('${req.params.user}', '${req.params.bookID}')`
+    db.query(insert,(err,result) => {
+        res.send(result);
+    })
+});
+app.get('/api/:user/unFavoriteBook/:bookID', (req, res) => {
+    const remove = `delete from book_favorites where user_id='${req.params.user}' and book_id='${req.params.bookID}'`
+    db.query(remove,(err,result) => {
+        res.send(result);
+    })
+});
+app.get('/api/:user/isFavorited/:bookID', (req, res) => {
+    const select = `Select * from book_favorites where user_id='${req.params.user}' and book_id='${req.params.bookID}'`
+    db.query(select,(err,result) => {
+        res.send(result);
+    })
+});
+app.list
 app.listen(port, () => {
     console.log(`Book Project Backend listening on port:${port}`);
 });

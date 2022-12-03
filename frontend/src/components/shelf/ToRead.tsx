@@ -1,10 +1,10 @@
 import React, { useEffect, useReducer } from "react";
-import { Button, Card, CardMedia, Grid } from "@mui/material";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import { Card, CardMedia, Grid } from "@mui/material";
 import ChangeShelf from "../ChangeShelf";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useGlobalContext } from "../../App";
+import FavoriteBook from "../FavoriteBook";
   
 
 function ToRead() {
@@ -36,14 +36,7 @@ function ToRead() {
           >
             <CardMedia component="img" height="140" image={book.cover_url} />
             <div className="bottom-0 bg-blue-50 h-5"></div>
-            <Button
-              size="medium"
-              sx={{ position: "absolute", bottom: 0, left: 0 }}
-            >
-              <div className="bg-blue-50 w-full rounded-full">
-                <FavoriteBorderOutlinedIcon />
-              </div>
-            </Button>
+            <FavoriteBook Book={book.id}></FavoriteBook>
             <ChangeShelf onChange={forceUpdate} Book={book.id}/>
           </Card>
         ))}

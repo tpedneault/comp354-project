@@ -5,6 +5,7 @@ import ChangeShelf from "../ChangeShelf";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useGlobalContext } from "../../App";
+import FavoriteBook from "../FavoriteBook";
 
 
 function Reading() {
@@ -22,7 +23,6 @@ function Reading() {
   useEffect(() => {
     refetch();
   }, [refetch, refreshNumber])
-
   
   return (
     <div className="w-full mt-10">
@@ -37,14 +37,7 @@ function Reading() {
           >
             <CardMedia component="img" height="140" image={book.cover_url} />
             <div className="bottom-0 bg-blue-50 h-5"></div>
-            <Button
-              size="medium"
-              sx={{ position: "absolute", bottom: 0, left: 0 }}
-            >
-              <div className="bg-blue-50 w-full rounded-full">
-                <FavoriteBorderOutlinedIcon />
-              </div>
-            </Button>
+            <FavoriteBook Book={book.id}></FavoriteBook>
             <ChangeShelf onChange={forceUpdate}Book={book.id}/>
           </Card>
         ))}
@@ -53,7 +46,5 @@ function Reading() {
     </div>
   );
 }
-
-Reading.propTypes = {};
 
 export default Reading;
