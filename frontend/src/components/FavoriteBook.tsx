@@ -14,7 +14,6 @@ export interface BookFavoriteProps {
 function FavoriteBook({Book}: BookFavoriteProps) {
     const {userID} = useGlobalContext();
     const {refreshNumber, setRefreshNumber} = useGlobalContext();
-    const {toUnfavorite, setToUnfavorite} = useGlobalContext();
     const needToFavorite = useRef(false);
 
 
@@ -43,24 +42,21 @@ function FavoriteBook({Book}: BookFavoriteProps) {
       useEffect(() => {
         if (needToFavorite.current){
           if(isFavoriteData?.data.length === 0){
-            console.log(Book);
             refetch();
-            console.log("putting favorites");
           }
           else{
-            console.log(Book)
             unFavorite();
-            console.log("deleting favorites");
           }
           needToFavorite.current = false;
-          setRefreshNumber(refreshNumber + 1);
+          setTimeout(function(){
+            setRefreshNumber(refreshNumber + 1);
+          },400);
         }
       }, [isFavoriteData]);
 
       const handleOnClick = () => {
         needToFavorite.current=true;
         checkFavorite();
-        
       }
 
       return(

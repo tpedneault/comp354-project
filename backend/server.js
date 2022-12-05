@@ -74,14 +74,14 @@ app.get('/api/:user/shelves/:shelf', (req, res) => {
 });
 
 app.get('/api/:user/favorites', (req, res) => {
-    const select = `SELECT DISTINCT users.id, books.id, title, publisher, author, cover_url, category FROM users INNER JOIN book_favorites, books WHERE users.id=${req.params.user} AND book_id = books.id`
+    const select = `SELECT DISTINCT users.id, books.id, title, publisher, author, cover_url, category FROM users INNER JOIN book_favorites, books WHERE users.id=${req.params.user} and user_id=${req.params.user} AND book_id = books.id`
     db.query(select, (err, result) => {
         res.send(result);
     });
 });
 
 app.get('/api/:user/recommendations', (req, res) => {
-    const select = `SELECT DISTINCT books.id FROM users INNER JOIN book_favorites, books WHERE users.id=${req.params.user} AND book_id = books.id`
+    const select = `SELECT DISTINCT books.id FROM users INNER JOIN book_favorites, books WHERE users.id=${req.params.user} and user_id=${req.params.user} AND book_id = books.id`
     db.query(select, (err, result) => {
         let isbns = result.map(x => x.id).join(",");
 

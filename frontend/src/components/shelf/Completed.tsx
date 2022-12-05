@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useGlobalContext } from "../../App";
 import FavoriteBook from "../FavoriteBook";
+import CardActions from "@material-ui/core/CardActions";
 
 function Completed() {
   const {userID} = useGlobalContext();
@@ -32,14 +33,15 @@ function Completed() {
           <Card
             id={book.id}
             key={book.id}
-            sx={{ width: 150, position: "relative", margin: "20px" }}
+            sx={{ width: 160, position: "relative", margin: "20px" }}
           >
             <CardMedia component="img" height="140" image={book.cover_url} />
             <div className="bottom-0 bg-blue-50 h-5"></div>
-            <div>
+            <CardActions disableSpacing>
               <FavoriteBook Book={book.id}></FavoriteBook>
-              <ChangeShelf Book={book.id} onChange={forceUpdate} />
-            </div>
+
+              <ChangeShelf onChange={forceUpdate}Book={book.id}/>
+            </CardActions>
             
           </Card>
         ))}

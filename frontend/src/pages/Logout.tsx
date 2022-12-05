@@ -7,7 +7,6 @@ function Logout() {
     const {userID, setUserID} = useGlobalContext();
     localStorage.setItem('userID', "0");
     setUserID(0);
-    console.log(userID);
     setTimeout(function(){
         navigate("/SignIn");
     },400);

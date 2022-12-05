@@ -64,10 +64,8 @@ function SignIn() {
   useEffect(() => {
     if(data !== undefined){
       if(data.data.length !== 0){
-        console.log(data.data[0].id);
         setUserID(data.data[0].id);
         localStorage.setItem('userID',data.data[0].id);
-        console.log(localStorage.getItem('userID'));
         navigate("/");
       }
       else{

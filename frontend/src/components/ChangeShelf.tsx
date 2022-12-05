@@ -15,6 +15,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { useGlobalContext } from "../App";
+import { useRef } from "react";
 
 enum shelves {
   ToRead = '1', Reading = '2', Completed = '3',
@@ -77,6 +78,7 @@ export default function ChangeShelf({onChange,Book}: ShelfChangeProps) {
   const {refreshNumber, setRefreshNumber} = useGlobalContext();
   const [open, setOpen] = React.useState(false);
   const [selectedState, setSelectedState] = React.useState("");
+  const toChangeShelf = useRef(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -84,24 +86,30 @@ export default function ChangeShelf({onChange,Book}: ShelfChangeProps) {
   const handleClose = (value: string) => {
     setOpen(false);
     if(value === "ToRead"){
+      toChangeShelf.current = true;
       setSelectedState(shelves.ToRead);
     }
     else if(value === "Reading"){
       setSelectedState(shelves.Reading);
+      toChangeShelf.current = true;
     }
     else if(value === "Completed"){
       setSelectedState(shelves.Completed);
+      toChangeShelf.current = true;
     }
 
-    setTimeout(function(){
-      refetch();
-    },200);
-    setTimeout(function(){
-      onChange();
-      setRefreshNumber(refreshNumber + 1);
-
-    },400)
-
+    if(toChangeShelf.current){
+      setTimeout(function(){
+        refetch();
+      },200);
+      setTimeout(function(){
+        onChange();
+        setRefreshNumber(refreshNumber + 1);
+  
+      },400)
+      toChangeShelf.current=false;
+    }
+   
   };
   
   const fetchData: () => any = async() =>{

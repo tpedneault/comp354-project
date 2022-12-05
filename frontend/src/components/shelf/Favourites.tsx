@@ -30,12 +30,11 @@ function Favorites() {
           <Card
             id={book.id}
             key={book.id}
-            sx={{ width: 150, position: "relative", margin: "20px" }}
+            sx={{ width: 160, position: "relative", margin: "20px" }}
           >
             <CardMedia component="img" height="140" image={book.cover_url} />
             <div className="bottom-0 bg-blue-50 h-5"></div>
             <FavoriteBook Book={book.id}></FavoriteBook>
-            <ChangeShelf Book={book.id} onChange={forceUpdate} />
           </Card>
         ))}
       </Grid>
