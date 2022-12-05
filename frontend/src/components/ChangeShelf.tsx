@@ -18,8 +18,10 @@ import { useGlobalContext } from "../App";
 import { useRef } from "react";
 
 enum shelves {
-  ToRead = '1', Reading = '2', Completed = '3',
-};
+  ToRead = "1",
+  Reading = "2",
+  Completed = "3",
+}
 
 export interface ChangeShelfProps {
   open: boolean;
@@ -27,8 +29,8 @@ export interface ChangeShelfProps {
   onClose: (value: string) => void;
 }
 export interface ShelfChangeProps {
-  onChange: () => void,
-  Book: string
+  onChange: () => void;
+  Book: string;
 }
 
 function SimpleDialog(props: ChangeShelfProps) {
@@ -52,7 +54,9 @@ function SimpleDialog(props: ChangeShelfProps) {
               key={shelf}
             >
               <ListItemAvatar>
-                <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
+                <Avatar
+                  sx={{ bgcolor: blue[100], color: blue[600], margin: 2 }}
+                >
                   <TopicIcon />
                 </Avatar>
               </ListItemAvatar>
@@ -62,7 +66,13 @@ function SimpleDialog(props: ChangeShelfProps) {
         </DialogContent>
         <ListItem autoFocus button onClick={() => handleListItemClick("")}>
           <ListItemAvatar>
-            <Avatar>
+            <Avatar
+              sx={{
+                bgcolor: blue[100],
+                color: blue[600],
+                margin: 2,
+              }}
+            >
               <AddIcon />
             </Avatar>
           </ListItemAvatar>
@@ -73,9 +83,9 @@ function SimpleDialog(props: ChangeShelfProps) {
   );
 }
 
-export default function ChangeShelf({onChange,Book}: ShelfChangeProps) {
-  const {userID} = useGlobalContext();
-  const {refreshNumber, setRefreshNumber} = useGlobalContext();
+export default function ChangeShelf({ onChange, Book }: ShelfChangeProps) {
+  const { userID } = useGlobalContext();
+  const { refreshNumber, setRefreshNumber } = useGlobalContext();
   const [open, setOpen] = React.useState(false);
   const [selectedState, setSelectedState] = React.useState("");
   const toChangeShelf = useRef(false);
@@ -85,48 +95,42 @@ export default function ChangeShelf({onChange,Book}: ShelfChangeProps) {
 
   const handleClose = (value: string) => {
     setOpen(false);
-    if(value === "ToRead"){
+    if (value === "ToRead") {
       toChangeShelf.current = true;
       setSelectedState(shelves.ToRead);
-    }
-    else if(value === "Reading"){
+    } else if (value === "Reading") {
       setSelectedState(shelves.Reading);
       toChangeShelf.current = true;
-    }
-    else if(value === "Completed"){
+    } else if (value === "Completed") {
       setSelectedState(shelves.Completed);
       toChangeShelf.current = true;
     }
 
-    if(toChangeShelf.current){
-      setTimeout(function(){
+    if (toChangeShelf.current) {
+      setTimeout(function () {
         refetch();
-      },200);
-      setTimeout(function(){
+      }, 200);
+      setTimeout(function () {
         onChange();
         setRefreshNumber(refreshNumber + 1);
-  
-      },400)
-      toChangeShelf.current=false;
+      }, 400);
+      toChangeShelf.current = false;
     }
-   
   };
-  
-  const fetchData: () => any = async() =>{
-    const URL =`http://localhost:3001/api/${userID}/changeShelf/${Book}/${selectedState}`;
+
+  const fetchData: () => any = async () => {
+    const URL = `http://localhost:3001/api/${userID}/changeShelf/${Book}/${selectedState}`;
     const response = await axios.get(URL);
     return response;
-  }
-  const {data,refetch} = useQuery( ["changeShelf"], fetchData,{enabled: false});
+  };
+  const { data, refetch } = useQuery(["changeShelf"], fetchData, {
+    enabled: false,
+  });
 
   return (
-    <div>
-      <Button
-        size="medium"
-        sx={{ position: "absolute", bottom: 0, right: 0 }}
-        onClick={handleClickOpen}
-      >
-        <div className="bg-blue-50 w-full rounded-full ">
+    <>
+      <Button onClick={handleClickOpen}>
+        <div className=" rounded-full ">
           <MoreHorizIcon />
         </div>
       </Button>
@@ -135,6 +139,6 @@ export default function ChangeShelf({onChange,Book}: ShelfChangeProps) {
         open={open}
         onClose={handleClose}
       />
-    </div>
+    </>
   );
 }
