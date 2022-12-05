@@ -8,7 +8,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
-df = pd.read_csv("books_database.csv")
+df = pd.read_csv("./books_database.csv")
 
 @app.route('/api/recommendations/<isbns_str>', methods = ['GET'])
 @cross_origin()
@@ -19,10 +19,10 @@ def recommendations(isbns_str):
         result = content_based_recommender(isbn)
         for book in result:
             if isinstance(book, tuple):
-                recommended.append(book[0])
+                recommended.append(f"'{book[0]}'")
             else:
-                recommended.append(book)
-    return recommended
+                recommended.append(f"'{book}'")
+    return ",".join(recommended)
 
 def content_based_recommender(isbn):
     book_title = isbn
@@ -38,7 +38,7 @@ def content_based_recommender(isbn):
             common_books = common_books.drop_duplicates(subset=['isbn'])
             common_books.reset_index(inplace= True)
             common_books['index'] = [i for i in range(common_books.shape[0])]
-            target_cols = ['book_title','book_author','publisher','Category']
+            target_cols = ['title','author','publisher','category']
             common_books['combined_features'] = [' '.join(common_books[target_cols].iloc[i,].values) for i in range(common_books[target_cols].shape[0])]
             cv = CountVectorizer()
             count_matrix = cv.fit_transform(common_books['combined_features'])

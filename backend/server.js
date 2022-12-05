@@ -92,9 +92,14 @@ app.get('/api/:user/recommendations', (req, res) => {
             method: 'GET'
         };
 
+        // Get the recommendations from the recommendations backend.
         const recommendation_req = http.request(options, (recommendation_res) => {
             recommendation_res.on('data', (d) => {
-                res.send(d);
+                // Get the full book information from the ISBN.
+                const query = `SELECT DISTINCT id, title, publisher, author, cover_url, category FROM books WHERE id IN (${d})`;
+                db.query(query, (err2, result2) => {
+                    res.send(result2);
+                });
             });
         });
 

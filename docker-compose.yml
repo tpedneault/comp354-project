@@ -8,8 +8,6 @@ services:
       - SYS_NICE
     volumes:
       - "./setup.sql:/docker-entrypoint-initdb.d/1.sql"
-      - "./books.sql:/docker-entrypoint-initdb.d/2.sql"
-      - "./data.sql:/docker-entrypoint-initdb.d/3.sql"
     ports:
       - 9906:3306
     environment:
