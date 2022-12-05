@@ -36,7 +36,7 @@ function Sidebar() {
         />
       </h1>
       <List>
-        <ListItem disablePadding>
+        <ListItem>
           <ListItemButton LinkComponent={Link} href="/">
             <ListItemIcon>
               <AutoStoriesOutlinedIcon color="primary" />
@@ -44,7 +44,7 @@ function Sidebar() {
             <ListItemText primary="My Books" />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding color="primary">
+        <ListItem color="primary">
           <ListItemButton color="primary" LinkComponent={Link} href="/Goals">
             <ListItemIcon color="primary">
               <CrisisAlertOutlinedIcon color="primary" />
@@ -52,7 +52,7 @@ function Sidebar() {
             <ListItemText color="primary" primary="Goals" />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding>
+        <ListItem>
           <ListItemButton LinkComponent={Link} href="/Statistics">
             <ListItemIcon>
               <TrendingUpOutlinedIcon color="primary" />
@@ -63,7 +63,7 @@ function Sidebar() {
       </List>
       <div>
         <List sx={{ position: "absolute", bottom: 0, width: "100%" }}>
-          <ListItem disablePadding>
+          <ListItem>
             <ListItemButton LinkComponent={Link} href="/Settings">
               <ListItemIcon>
                 <SettingsOutlinedIcon color="primary" />
@@ -71,7 +71,7 @@ function Sidebar() {
               <ListItemText primary="Settings" />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
+          <ListItem>
             <ListItemButton LinkComponent={Link} href="/Logout">
               <ListItemIcon>
                 <LogoutOutlinedIcon color="primary" />
