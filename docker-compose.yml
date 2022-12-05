@@ -11,7 +11,7 @@ services:
       - "./books.sql:/docker-entrypoint-initdb.d/2.sql"
       - "./data.sql:/docker-entrypoint-initdb.d/3.sql"
     ports:
-      - "9906:3306"
+      - 9906:3306
     environment:
       MYSQL_DATABASE: books
       MYSQL_ROOT_PASSWORD: password 
@@ -44,3 +44,10 @@ services:
       - mysql_db
     environment:
       ADMINER_DEFAULT_SERVER: mysql_db
+
+  recommendation-backend:
+    build: 
+      dockerfile: Dockerfile
+      context: ./recommendation-backend
+    ports: 
+      - 5000:5000

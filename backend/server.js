@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
+const http = require('http');
 const port = 3001;
 
 const db = mysql.createPool({
@@ -78,6 +79,33 @@ app.get('/api/:user/favorites', (req, res) => {
         res.send(result);
     });
 });
+
+app.get('/api/:user/recommendations', (req, res) => {
+    const select = `SELECT DISTINCT books.id FROM users INNER JOIN book_favorites, books WHERE users.id=${req.params.user} AND book_id = books.id`
+    db.query(select, (err, result) => {
+        let isbns = result.map(x => x.id).join(",");
+
+        const options = {
+            hostname: 'recommendation-backend',
+            port: 5000,
+            path: `/api/recommendations/${isbns}`,
+            method: 'GET'
+        };
+
+        const recommendation_req = http.request(options, (recommendation_res) => {
+            recommendation_res.on('data', (d) => {
+                res.send(d);
+            });
+        });
+
+        recommendation_req.on('error', (e) => {
+            res.send(e);
+        });
+
+        recommendation_req.end();
+    });
+});
+
 app.get('/api/signin/:email/:password', (req, res) => {
     const select = `SELECT * FROM users WHERE email='${req.params.email}' AND password_md5='${req.params.password}'`;
     db.query
@@ -85,31 +113,35 @@ app.get('/api/signin/:email/:password', (req, res) => {
         res.send(result);
     });
 });
+
 app.get('/api/:user/changeshelf/:bookID/:toShelf', (req, res) => {
     const update = `update book_shelves set shelf_id='${req.params.toShelf}' where user_id='${req.params.user}' AND book_id='${req.params.bookID}'`
     db.query(update,(err,result) => {
         res.send(result);
     })
 });
+
 app.get('/api/:user/favoriteBook/:bookID', (req, res) => {
     const insert = `insert into book_favorites(user_id,book_id) values('${req.params.user}', '${req.params.bookID}')`
     db.query(insert,(err,result) => {
         res.send(result);
     })
 });
+
 app.get('/api/:user/unFavoriteBook/:bookID', (req, res) => {
     const remove = `delete from book_favorites where user_id='${req.params.user}' and book_id='${req.params.bookID}'`
     db.query(remove,(err,result) => {
         res.send(result);
     })
 });
+
 app.get('/api/:user/isFavorited/:bookID', (req, res) => {
     const select = `Select * from book_favorites where user_id='${req.params.user}' and book_id='${req.params.bookID}'`
     db.query(select,(err,result) => {
         res.send(result);
     })
 });
-app.list
+
 app.listen(port, () => {
     console.log(`Book Project Backend listening on port:${port}`);
 });
