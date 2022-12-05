@@ -57,11 +57,11 @@ function Dashboard() {
             </Box>
           </div>
         </div>
+        <Recommended />
+        <Favorites />
         <ToRead />
         <Reading />
         <Completed />
-        <Favorites />
-        <Recommended />
       </Container>
     </>
   );
