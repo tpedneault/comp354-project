@@ -1,5 +1,5 @@
 # My-Books Project
-This project contains a web application that allows a user to track reading progress. Users can log in with preset authentication values (see below), change the shelf of a book (To Read, Reading, Completed), favourite/unfavourite a book (automatically adds to Favourite Shelf), get recommended books based on the user's reading interests. 
+This project contains a web application that allows a user to track reading progress. Users can log in with preset authentication profiles (see below), change the shelf of a book (To Read, Reading, Completed), favourite/unfavourite a book (automatically adds to Favourite Shelf), get recommended books based on the user's reading interests. 
 
 If this project were to be continued, we would like to add a feature to remove a book from your library, complete the goals page, complete the statistics page, complete the settings page, improve the recommendation engine, add a feature to create and delete accounts, add a feature to search the book database to add to your account library and more...
 
