@@ -21,7 +21,7 @@ MySQL: localhost:9906
 ##### Frontend: React.js, MUI, Tailwind, Axios
 ##### Backend (Primary): Express.js
 ##### Backend (Recommendation Engine): Flask
-####Database: MySQL
+#### Database: MySQL
 
 ## Authentication
 
