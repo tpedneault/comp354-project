@@ -17,11 +17,11 @@ Recommendation Backend: localhost:5000
 Adminer: localhost:8080
 MySQL: localhost:9906 
 
-#### Stack
-Frontend: React.js, MUI, Tailwind, Axios
-Backend (Primary): Express.js
-Backend (Recommendation Engine): Flask
-Database: MySQL
+## Stack
+##### Frontend: React.js, MUI, Tailwind, Axios
+##### Backend (Primary): Express.js
+##### Backend (Recommendation Engine): Flask
+####Database: MySQL
 
 ## Authentication
 
